@@ -1,10 +1,26 @@
+/* 
+    Discord Bot created by T3chyy for the RedAl3rt // T3chyy Discord server.
+    Invite to the server: invite.gg/t3chyy
+    
+    Social Media:
+
+    youtube.com/t3chyy
+    twitter.com/RedAl3rt2
+    github.com/RedAl3rtT3chyy
+    T3chyy#8145
+*/
+
+//Import discord.js and other Node modules.
 const Discord = require("discord.js");
 const bot = new Discord.Client()
 const { MessageEmbed } = require("discord.js");
+//ytdl-core module, Used to play music.
 const ytdl = require("ytdl-core")
 
+//The token used to access the bot. Hidden in a json file called "token.json".
 const token = require("./token.json")
 
+//List of roasts. Used for the t!roast command.
 var roasts = ["Fake hair, fake nails, fake smile. Are you sure you weren't made in China?", 
 "Mirrors can't talk, and lucky for you they can't laugh either.",
 "I'd say you're funny, but looks aren't everything.", 
@@ -53,17 +69,23 @@ var roasts = ["Fake hair, fake nails, fake smile. Are you sure you weren't made 
 "I failed a spelling test because they asked me how to spell 'bitch' and I wrote down your name.",
 "Your face looks like something I would draw with my non dominant hand."]
 
+//Log the bot into Discord.
 bot.login(token.login)
 
 
+//The event for when the bot is ready.
 bot.on('ready', () => {
+    //The game status of the bot. Goes by "Watching for t!help"
     bot.user.setActivity("for t!help", { type: 'WATCHING' });
+    //Send a message to the console when the bot finished startup.
 	console.log("Startup Done.")
 });
 
 
 bot.on('message', async message => {
 
+
+    //The list of commands.
     if (message.content == "t!help") {
         
         const embed = new MessageEmbed()
