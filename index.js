@@ -99,6 +99,7 @@ bot.on('message', async message => {
         .addField("t!avatar", "Sends your avatar URL!")
         .addField("t!play [URL]", "Play a song using T3chyy Player!")
         .addField("t!leave", "Leave the voice channel.")
+        .addField("t!ping", "View the bot's latency as well as view the Discord API ping.")
         .setFooter("© RedAl3rt, 2020 All rights reserved.")
         message.channel.send(embed);        
     }
@@ -106,9 +107,9 @@ bot.on('message', async message => {
     if (message.content == "t!changelog") {
 
         const embed = new MessageEmbed()
-        .setTitle("Changelog for Version v1.03.1")
+        .setTitle("Changelog for Version v1.03.2")
         .setColor(0xFF0000)
-        .addField("Roast is now an embedded message!", "This makes the roast command look more b")
+        .addField("Ping command!", "View the bot's latency as well as view the Discord API ping.")
         .addField("More roasts!", "More roasts come out every update! Use them to roast the hell out of your friends!")
         .setFooter("© RedAl3rt, 2020 All rights reserved.")
 
@@ -116,7 +117,7 @@ bot.on('message', async message => {
     }
 
     if (message.content == "t!version") {
-        message.channel.send("Version v1.03.1")
+        message.channel.send("Version v1.03.2")
     }
 
     if (message.content == "t!roast") {
@@ -166,4 +167,18 @@ bot.on('message', async message => {
         const voiceChannel = message.member.voice.channel
         voiceChannel.leave()
     }
+
+    if(message.content == "t!ping") {
+
+        let latancy = (Date.now() - message.createdTimestamp);
+        const embed = new MessageEmbed()
+        .setTitle("Pong!")
+        .setColor(0xFF0000)
+        .addField("📶 Latency:", `${latancy}ms`)
+        .addField("💻 API:", `${Math.round(bot.ws.ping)}ms`)
+        .setFooter("© RedAl3rt, 2020 All rights reserved.")
+
+        message.channel.send(embed)
+    }
+
 });
