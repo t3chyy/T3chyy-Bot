@@ -3,7 +3,6 @@
     Invite to the server: invite.gg/t3chyy
     
     Social Media:
-
     youtube.com/t3chyy
     twitter.com/RedAl3rt2
     github.com/RedAl3rtT3chyy
@@ -100,8 +99,9 @@ bot.on('message', async message => {
         .addField("t!play [URL]", "Play a song using T3chyy Player!")
         .addField("t!leave", "Leave the voice channel.")
         .addField("t!ping", "View the bot's latency as well as view the Discord API ping.")
+        .addField("t!pumpedupkicks", "Plays Foster The People - Pumped up Kicks (Don't question the existence of this command please)")
         .setFooter("© RedAl3rt, 2020 All rights reserved.")
-        message.channel.send(embed);        
+        message.author.send(embed);        
     }
 
     if (message.content == "t!changelog") {
@@ -180,5 +180,24 @@ bot.on('message', async message => {
 
         message.channel.send(embed)
     }
+
+
+    if (message.content === 't!pumpedupkicks') {
+		if (message.channel.type !== 'text') return;
+
+		const voiceChannel = message.member.voice.channel;
+
+		if (!voiceChannel) {
+			return message.reply('please join a voice channel first!');
+		}
+
+		voiceChannel.join().then(connection => {
+			const stream = ytdl('https://www.youtube.com/watch?v=rnO-MflYxCw', { filter: 'audioonly' });
+			const dispatcher = connection.play(stream);
+
+			dispatcher.on('end', () => voiceChannel.leave());
+		});
+    }
+    
 
 });
