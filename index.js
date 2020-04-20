@@ -74,10 +74,12 @@ bot.login(token.login)
 
 //The event for when the bot is ready.
 bot.on('ready', () => {
-    //The game status of the bot. Goes by "Watching for t!help"
-    bot.user.setActivity("for t!help", { type: 'WATCHING' });
-    //Send a message to the console when the bot finished startup.
-	console.log("Startup Done.")
+    bot.user.setPresence({ activity: { name: 'Loading..' }, status: 'dnd' })
+    console.log("Loading..")
+    setTimeout(() => {
+        console.log("Loading completed.")
+        bot.user.setPresence({ activity: { name: 'for t!help', type: "WATCHING" }, status: 'online' })
+    }, 20000);
 });
 
 
