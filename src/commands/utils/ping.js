@@ -4,8 +4,7 @@ module.exports.run = async(client, message, args) => {
         const embed = new MessageEmbed()
         .setTitle("Pong!")
         .setColor(0xFF0000)
-        .addField("📶 Latency:", `${latancy}ms`)
-        .addField("💻 API:", `${Math.round(client.ws.ping)}ms`)
+        .addField("💻 Ping:", `${Math.round(client.ws.ping)}ms`)
         .setFooter("© RedAl3rt, 2020 All rights reserved.")
 
         message.channel.send(embed)
