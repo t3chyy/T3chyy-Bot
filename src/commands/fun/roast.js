@@ -45,7 +45,12 @@ var roasts = ["Fake hair, fake nails, fake smile. Are you sure you weren't made 
 "You have more dick in your personality than you do in your pants.",
 "You're the cum your mother should have swallowed.",
 "I failed a spelling test because they asked me how to spell 'bitch' and I wrote down your name.",
-"Your face looks like something I would draw with my non dominant hand."]
+"Your face looks like something I would draw with my non dominant hand.",
+"My phone battery lasts longer than your relationships.",
+"My name must taste good because it’s always in your mouth.",
+"Don’t you get tired of putting make up on two faces every morning?",
+"Is your drama going to an intermission soon?",
+"It’s a shame you can’t Photoshop your personality."]
 module.exports.run = async(client, message, args) => {
     var response = roasts[Math.floor(Math.random()*roasts.length)];
     const embed = new MessageEmbed()
@@ -53,5 +58,5 @@ module.exports.run = async(client, message, args) => {
     .setColor(0xFF0000)
     .setDescription(response)
     .setFooter("© RedAl3rt, 2020 All rights reserved.")
-    message.content.send(embed)
+    message.channel.send(embed)
 }

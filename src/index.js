@@ -14,13 +14,19 @@
 require('dotenv').config();
 const Discord = require("discord.js");
 const client = new Discord.Client()
-const { MessageEmbed } = require("discord.js");
-//ytdl-core module, Used to play music.
-const ytdl = require("ytdl-core")
+const { ErelaClient } = require('erela.js')
 const fs = require('fs').promises;
 const path = require('path')
 const prefix = process.env.PREFIX
+const nodes = [
+    {
+        host: process.env.HOST,
+        port: process.env.PORT,
+        password: process.env.PASSWORD
+    }
+]
 client.commands = new Map();
+client.musicPlayers = new Map();
 
 //Log the bot into Discord.
 client.login(process.env.BOT_TOKEN)
@@ -34,6 +40,14 @@ client.on('ready', () => {
         console.log("Loading completed.")
         client.user.setPresence({ activity: { name: 'for t!help', type: "WATCHING" }, status: 'online' })
     }, 20000);
+    client.music = new ErelaClient(client, nodes);
+    client.music.on("nodeConnect", node => console.log(node));
+    client.music.on("nodeError", (node, error) => console.log(`Node error: ${error.message}`));
+    client.music.on("trackStart", (player, track) => player.textChannel.send(`Now playing: ${track.title}`));
+    client.music.on("queueEnd", player => {
+        player.textChannel.send("Queue has ended.")
+    });
+
 });
 
 
@@ -42,7 +56,7 @@ client.on('message', async message => {
     if(message.author.bot) return;
     if(!message.content.startsWith(prefix)) return;
     let cmdName = message.content.substring(message.content.indexOf(prefix)+2).split(new RegExp(/\s+/)).shift();
-    let argsToParse = message.content.substring(message.content.indexOf(' ')+1);
+    let argsToParse = message.content.slice(prefix.length).split(' ');
     if(client.commands.get(cmdName))
         client.commands.get(cmdName).run(client, message, argsToParse);
     else {
