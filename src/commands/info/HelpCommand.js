@@ -16,6 +16,7 @@ module.exports = class HelpCommand extends BaseCommand {
         .addField("t!changelog", "Views the changelog for each new bot version!")
         .addField("t!abouteas", "Shows information about the Emergency Alert System. (EAS)")
         .addField("t!avatar", "Sends your avatar URL!")
+        .addField("t!src", "Links you my source code!")
         .addField("t!ping", "Views your ping.")
         .setFooter("© T3chyy Studios Inc, 2021 All rights reserved.")
         message.author.send(embed);

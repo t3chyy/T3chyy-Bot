@@ -67,7 +67,7 @@ module.exports = class RoastCommand extends BaseCommand {
     .setTitle("Roast")
     .setColor(0xFF0000)
     .setDescription(response)
-    .setFooter("© RedAl3rt, 2020 All rights reserved.")
+    .setFooter("© T3chyy Studios Inc, 2021 All rights reserved.")
     message.channel.send(embed)
 
   }
