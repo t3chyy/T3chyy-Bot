@@ -9,7 +9,7 @@ module.exports = class ReadyEvent extends BaseEvent {
     console.log("Loading..")
     setTimeout(() => {
         console.log("Loading completed.")
-        client.user.setPresence({ activity: { name: 'Version v2.00 | t!help for a list of commands', type: "PLAYING" }, status: 'online' })
+        client.user.setPresence({ activity: { name: 'Version v2.03 [Stable Build] | t!help for a list of commands | DM T3chyy#0001 for questions and concerns.', type: "PLAYING" }, status: 'online' })
     }, 20000);
   }
 }

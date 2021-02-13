@@ -10,11 +10,15 @@ module.exports = class AnnounceCommand extends BaseCommand {
   run(client, message, args) {
     if (message.author.id == owner) {
       const announcement = args.join(" ");
+
       const embed = new MessageEmbed()
       .setTitle("Announcement")
       .setColor(0xFF0000)
       .setDescription(announcement)
       .setFooter("© T3chyy Studios Inc, 2021 All rights reserved.")
+      setTimeout(() => {
+        message.delete().catch();
+      }, 1000)
       message.channel.send(embed)
 
     } else {

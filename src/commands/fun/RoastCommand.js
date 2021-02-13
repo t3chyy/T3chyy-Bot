@@ -63,10 +63,13 @@ module.exports = class RoastCommand extends BaseCommand {
 
    run(client, message, args) {
     var response = roasts[Math.floor(Math.random()*roasts.length)];
+    const person = args.join(' ')
+
+    if (!args[0]) return message.channel.send("Who are you gonna burn to the ground? Try the command again, but this time please include someone to DESTROY.")
     const embed = new MessageEmbed()
     .setTitle("Roast")
     .setColor(0xFF0000)
-    .setDescription(response)
+    .setDescription(person + ", " + response)
     .setFooter("© T3chyy Studios Inc, 2021 All rights reserved.")
     message.channel.send(embed)
 
