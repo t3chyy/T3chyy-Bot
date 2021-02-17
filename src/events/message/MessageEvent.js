@@ -1,5 +1,5 @@
 const BaseEvent = require('../../utils/structures/BaseEvent');
-const blockedUsers = [ '' ];
+const blockedUsers = [ '788561092485578764' ];
 
 module.exports = class MessageEvent extends BaseEvent {
   constructor() {

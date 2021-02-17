@@ -18,6 +18,7 @@ module.exports = class HelpCommand extends BaseCommand {
         .addField("t!avatar", "Sends your avatar URL!")
         .addField("t!hack", "Hack someone (fyi it doesn't really hack anyone lmao)")
         .addField("t!src", "Links you my source code!")
+        .addField("t!junior", "Junior the Cat pictures (its not my cat fyi)")
         .addField("t!ping", "Views your ping.")
         .addField("t!tos", "Shows the T3chyy Bot Terms of Service.")
         .addField("Owner Only - t!say", "Prints out any message you want")
@@ -26,8 +27,8 @@ module.exports = class HelpCommand extends BaseCommand {
         .setFooter("© T3chyy Studios Inc, 2021 All rights reserved.")
         message.author.send(embed).catch(error => {
           message.channel.send("I couldn't send you a DM. Sending the Command List in current channel.")
-          message.channel.send(embed)
-          
+          message.channel.send(embed)   
     })
+    message.react('✅')
   }
 }
